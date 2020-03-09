@@ -1,7 +1,11 @@
-//GreggsBattlePack.h
+//BattlePack.h
 /*
 Hi. I'm Greggory Hickman, and these are some helpful methods to use in your C++ code.
 */
+
+#include <cstring>
+
+#define LEN 100
 
 /*
 Clears all data from a cstring. Can be used to empty out a previously used cstring, or to clear any random RAM still present inside.
@@ -13,15 +17,15 @@ void clearCString(char*& in, int len) {
 }
 
 /*
-Converts a space terminated cstring of numbers to an array of intergers. Ignores things other than numbers, making them safe to input.
+Converts a character terminated cstring of numbers to an array of intergers. Ignores things other than numbers, making them safe to input.
+The character that separates each number can be specified. For example, for a traditional zero terminated string, separator should be '0' or (char)48.
 This method uses the clearCString method which can be seen above. Please keep that in mind when using this code.
 */
-int* parseZTCString(char* charList) {
+int* parseZTCString(char* charList, char separator) {
 	char* current = new char[LEN];
 	int* numList = new int[LEN];
 	
 	//Clear pesky leftover ram from pointer arrays
-	
 	clearCString(current, LEN);
 	for (int i = 0; i < LEN; i++) {
 		numList[i] = 0;
@@ -45,7 +49,7 @@ int* parseZTCString(char* charList) {
 			j++;
 		}
 		//If is space
-		else if (charList[i] == 32) {
+		else if (charList[i] == separator) {
 			if (j != 0) {
 				//cout << "Space: " << current << endl;
 				//current contains the number that we want to convert to an integer
