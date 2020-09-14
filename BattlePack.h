@@ -1,6 +1,8 @@
 //BattlePack.h
 /*
 Hi. I'm Greggory Hickman, and these are some helpful methods to use in your C++ code.
+
+Greggory Hickman, September 2019 - September 2020
 */
 
 #include <iostream>
@@ -37,17 +39,17 @@ The character that separates each number can be specified. For example, for a tr
 This method uses the clearCString method which can be seen above. Please keep that in mind when using this code.
 @author Greggory Hickman, February 2020
 */
-int* parseZTCString(char* charList, char separator) {
+int* stringToInt(char* charList, char separator) {
 	char* current = new char[LEN];
 	int* numList = new int[LEN];
-	
+
 	//Clear pesky leftover ram from pointer arrays
 	clearCString(current, LEN);
 	clearIntArray(numList, LEN);
-	
+
 	//cout << "Starting charList: " << charList << endl;
 	//cout << "Starting current: " << current << endl;
-	
+
 	//Parse the input
 	int j = 0; //Iterator for current
 	int k = 0; //Iterator for numList
@@ -68,7 +70,7 @@ int* parseZTCString(char* charList, char separator) {
 				//cout << "Space: " << current << endl;
 				//current contains the number that we want to convert to an integer
 				int next = 0;
-				
+
 				//Iterate backwards through current
 				for (int l = j - 1; l >= 0; l--) {
 					//Convert the char* to int one unit place at a time by adding each value * 10^place. For example, when in the hundred's place, place = 2.
@@ -78,7 +80,7 @@ int* parseZTCString(char* charList, char separator) {
 				numList[k] = next;
 				j = 0;
 				k++;
-				
+
 				clearCString(current, LEN);
 			}
 		}
@@ -88,7 +90,7 @@ int* parseZTCString(char* charList, char separator) {
 				//cout << "Null: " << current << endl;
 				//current contains the number that we want to convert to an integer
 				int next = 0;
-				
+
 				//Iterate backwards through current
 				for (int l = j - 1; l >= 0; l--) {
 					//Convert the char* to int one unit place at a time by adding each value * 10^place. For example, when in the hundred's place, place = 2.
@@ -100,6 +102,6 @@ int* parseZTCString(char* charList, char separator) {
 		}
 	}
 	delete[] current;
-	
+
 	return numList;
 }
